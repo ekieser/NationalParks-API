@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>National Park Locator</title>
+</head>
+<body>
+    <header>
+        <h1>Find National Parks near you!</h1>
+    </header>
+    <main role="main">
+        <form id="user-search">
+            <fieldset>
+                <legend><h2>Enter state</h2></legend>
+                <input id="state-entry" type="text" placeholder="Enter state abbrevaiton. Ex: IL, OH" required>
+                <legend><h2>Number of results you'd like to see</h2></legend>
+                <input id="results-entry" type="number" value="10" required>
+                <button id="submit-entry" type="submit">Search</button>
+            </fieldset>
+        </form>
+    </main>
+    <section role="complementary" class="all-results">
+        <ul id="display-results">
+
+        </ul>
+        <p id="js-error-message"></p>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
