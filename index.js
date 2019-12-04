@@ -2,7 +2,7 @@
 
 const api_key = 'YyQ7clRRUWhfH2oeY88CtZ5WFalJRN2nSDKMrskJ';
 
-const searchURL = 'https://developer.nps.gov/api/v1/parks'
+const searchURL = 'https://developer.nps.gov/api/v1/parks';
 
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
