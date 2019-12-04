@@ -2,7 +2,7 @@
 
 const api_key = 'YyQ7clRRUWhfH2oeY88CtZ5WFalJRN2nSDKMrskJ';
 
-const searchURL = 'https://developer.nps.gov/api/v1/parks';
+const searchURL = 'https://developer.nps.gov/api/v1/parks?api_key=YyQ7clRRUWhfH2oeY88CtZ5WFalJRN2nSDKMrskJ&stateCode=a&limit=10';
 
 function formatQueryParams(params) {
     const queryItems = Object.keys(params)
@@ -14,7 +14,7 @@ function retrieveParks(query, limit=10) {
     const params = {
         key: api_key,
         stateCode: query,
-        limit: 10,
+        limit,
     };
     const queryString = formatQueryParams(params);
     const url = searchURL + '?' + queryString;
@@ -25,7 +25,7 @@ function retrieveParks(query, limit=10) {
             }
             throw new Error(response.statusText);
         })
-        .then(responseJson => console.log(JSON.stringify(responseJson)))
+        .then(responseJson => displayParks(responseJson))
         .catch(err => {
             $('#js-error-message').text(`There was an error: ${err.message}`);
         });
@@ -33,9 +33,9 @@ function retrieveParks(query, limit=10) {
 
 function displayParks(responseJson) {
     console.log(responseJson);
-    for (let i = 0; i < responseJson.length; i++) {
+    for (let i = 0; i < responseJson.data.length; i++) {
         $('#display-results').append(
-            `<a href='${responseJson.data[i].url}' target="blank"><h3>${responseJson.data[i].fullname}</h3></a>
+            `<a href='${responseJson.data[i].url}' target="blank"><h3>${responseJson.data[i].name}</h3></a>
             <h4>Location: ${responseJson.data[i].states}</h4>
             <p>${responseJson.data[i].description}</p>
             <a href="${responseJson.data[i].directionsUrl}" target="blank">Directions</a>`
